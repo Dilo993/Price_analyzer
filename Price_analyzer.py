@@ -78,7 +78,7 @@ def analyze_combined(file_path: str, iteration: int):
         Separate features (X) and target (y) for analysis.
         """
         X = df.drop(columns=existing_target_columns)
-        y = df[existing_target_columns]
+        y = df[existing_target_columns].values.ravel()
 
         column_contributions = {}
         total_iterations = 0
@@ -100,7 +100,11 @@ def analyze_combined(file_path: str, iteration: int):
         """
         root.title("Calculating...")
         for i in range(iteration):
-            selected_columns = np.random.choice(X.columns, size=min(6, len(X.columns)), replace=False)
+            """
+            Ensure fair and equal selection of columns by shuffling and splitting.
+            """
+            shuffled_columns = np.random.permutation(X.columns)
+            selected_columns = shuffled_columns[:max(1, len(X.columns) // 2)]
             X_subset = X[selected_columns]
 
             """
