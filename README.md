@@ -37,4 +37,4 @@ python Price_analyzer.py
 
 ## Autor
 
-Blady Bartłomiej – [GitHub](https://github.com/Dilo993)
+[GitHub](https://github.com/Dilo993)
